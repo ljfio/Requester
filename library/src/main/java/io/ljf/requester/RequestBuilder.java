@@ -12,7 +12,7 @@ import java.util.Map;
  * Built this to speed up making requests or something
  */
 
-public class RequestBuilder<TReq, TRes> {
+public class RequestBuilder<TRes, TReq> {
     private int method;
 
     private Map<String, String> params;
@@ -25,61 +25,56 @@ public class RequestBuilder<TReq, TRes> {
 
     private TReq requestObject;
 
-    public static <UReq, URes> RequestBuilder<UReq, URes> get() {
-        RequestBuilder<UReq, URes> getRequest = new RequestBuilder<>();
-        getRequest.setMethod(Method.GET);
+    public RequestBuilder(int method) {
+        this.method = method;
+    }
+
+    public static <URes, UReq> RequestBuilder<URes, UReq> get() {
+        RequestBuilder<URes, UReq> getRequest = new RequestBuilder<>(Method.GET);
         return getRequest;
     }
 
-    public static <UReq, URes> RequestBuilder<UReq, URes> post() {
-        RequestBuilder<UReq, URes> getRequest = new RequestBuilder<>();
-        getRequest.setMethod(Method.POST);
+    public static <URes, UReq> RequestBuilder<URes, UReq> post() {
+        RequestBuilder<URes, UReq> getRequest = new RequestBuilder<>(Method.POST);
         return getRequest;
     }
 
-    public static <UReq, URes> RequestBuilder<UReq, URes> put() {
-        RequestBuilder<UReq, URes> getRequest = new RequestBuilder<>();
-        getRequest.setMethod(Method.PUT);
+    public static <URes, UReq> RequestBuilder<URes, UReq> put() {
+        RequestBuilder<URes, UReq> getRequest = new RequestBuilder<>(Method.PUT);
         return getRequest;
     }
 
-    public static <UReq, URes> RequestBuilder<UReq, URes> delete() {
-        RequestBuilder<UReq, URes> deleteRequest = new RequestBuilder<>();
-        deleteRequest.setMethod(Method.DELETE);
+    public static <URes, UReq> RequestBuilder<URes, UReq> delete() {
+        RequestBuilder<URes, UReq> deleteRequest = new RequestBuilder<>(Method.DELETE);
         return deleteRequest;
     }
 
-    private RequestBuilder<TReq, TRes> setMethod(int method) {
-        this.method = method;
-        return this;
-    }
-
-    public RequestBuilder<TReq, TRes> setUrl(String url) {
+    public RequestBuilder<TRes, TReq> setUrl(String url) {
         this.url = url;
         return this;
     }
 
-    public RequestBuilder<TReq, TRes> setParams(Map<String, String> params) {
+    public RequestBuilder<TRes, TReq> setParams(Map<String, String> params) {
         this.params = params;
         return this;
     }
 
-    public RequestBuilder<TReq, TRes> setHeaders(Map<String, String> headers) {
+    public RequestBuilder<TRes, TReq> setHeaders(Map<String, String> headers) {
         this.headers = headers;
         return this;
     }
 
-    public RequestBuilder<TReq, TRes> setRequestObject(TReq requestObject) {
+    public RequestBuilder<TRes, TReq> setRequestObject(TReq requestObject) {
         this.requestObject = requestObject;
         return this;
     }
 
-    public RequestBuilder<TReq, TRes> setListener(Listener<TRes> listener) {
+    public RequestBuilder<TRes, TReq> setListener(Listener<TRes> listener) {
         this.listener = listener;
         return this;
     }
 
-    public RequestBuilder<TReq, TRes> setErrorListener(ErrorListener errorListener) {
+    public RequestBuilder<TRes, TReq> setErrorListener(ErrorListener errorListener) {
         this.errorListener = errorListener;
         return this;
     }
@@ -87,9 +82,10 @@ public class RequestBuilder<TReq, TRes> {
     public Request<TRes> build() {
         if (method == Method.GET) {
             return new GetRequest<TRes>(url, headers, params, listener, errorListener);
-        } else if(method == Method.POST || method == Method.PUT) {
-            boolean isPost = method == Method.POST;
-            return new PostOrPutRequest<TRes, TReq>(isPost, url, headers, requestObject, listener, errorListener);
+        } else if(method == Method.POST) {
+            return new PostRequest<TRes, TReq>(url, headers, requestObject, listener, errorListener);
+        } else if(method == Method.PUT) {
+            return new PutRequest<TRes, TReq>(url, headers, requestObject, listener, errorListener);
         } else if(method == Method.DELETE) {
             return new DeleteRequest<TRes>(url, headers, listener, errorListener);
         } else {
