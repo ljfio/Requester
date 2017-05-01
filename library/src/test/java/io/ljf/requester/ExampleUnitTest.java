@@ -1,5 +1,7 @@
 package io.ljf.requester;
 
+import com.android.volley.toolbox.JsonRequest;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -13,5 +15,10 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
+    }
+
+    @Test
+    public void builder_works() throws Exception {
+
     }
 }

@@ -15,9 +15,6 @@ import java.util.Map;
 public class RequestBuilder<TReq, TRes> {
     private int method;
 
-    private Class<TReq> reqClass;
-    private Class<TRes> resClass;
-
     private Map<String, String> params;
     private Map<String, String> headers;
 
@@ -28,31 +25,26 @@ public class RequestBuilder<TReq, TRes> {
 
     private TReq requestObject;
 
-    public RequestBuilder(Class<TReq> requestClass, Class<TRes> responseClass) {
-        this.reqClass = requestClass;
-        this.resClass = responseClass;
-    }
-
-    public static <UReq, URes> RequestBuilder<UReq, URes> get(Class<URes> resClass) {
-        RequestBuilder<UReq, URes> getRequest = new RequestBuilder<>(null, resClass);
+    public static <UReq, URes> RequestBuilder<UReq, URes> get() {
+        RequestBuilder<UReq, URes> getRequest = new RequestBuilder<>();
         getRequest.setMethod(Method.GET);
         return getRequest;
     }
 
-    public static <UReq, URes> RequestBuilder<UReq, URes> post(Class<UReq> reqClass, Class<URes> resClass) {
-        RequestBuilder<UReq, URes> getRequest = new RequestBuilder<>(reqClass, resClass);
+    public static <UReq, URes> RequestBuilder<UReq, URes> post() {
+        RequestBuilder<UReq, URes> getRequest = new RequestBuilder<>();
         getRequest.setMethod(Method.POST);
         return getRequest;
     }
 
-    public static <UReq, URes> RequestBuilder<UReq, URes> put(Class<UReq> reqClass, Class<URes> resClass) {
-        RequestBuilder<UReq, URes> getRequest = new RequestBuilder<>(reqClass, resClass);
+    public static <UReq, URes> RequestBuilder<UReq, URes> put() {
+        RequestBuilder<UReq, URes> getRequest = new RequestBuilder<>();
         getRequest.setMethod(Method.PUT);
         return getRequest;
     }
 
-    public static <UReq, URes> RequestBuilder<UReq, URes> delete(Class<URes> resClass) {
-        RequestBuilder<UReq, URes> deleteRequest = new RequestBuilder<>(null, resClass);
+    public static <UReq, URes> RequestBuilder<UReq, URes> delete() {
+        RequestBuilder<UReq, URes> deleteRequest = new RequestBuilder<>();
         deleteRequest.setMethod(Method.DELETE);
         return deleteRequest;
     }
@@ -94,12 +86,12 @@ public class RequestBuilder<TReq, TRes> {
 
     public Request<TRes> build() {
         if (method == Method.GET) {
-            return new GetRequest<TRes>(url, resClass, headers, params, listener, errorListener);
+            return new GetRequest<TRes>(url, headers, params, listener, errorListener);
         } else if(method == Method.POST || method == Method.PUT) {
             boolean isPost = method == Method.POST;
-            return new PostOrPutRequest<TReq, TRes>(isPost, url, reqClass, resClass, headers, requestObject, listener, errorListener);
+            return new PostOrPutRequest<TRes, TReq>(isPost, url, headers, requestObject, listener, errorListener);
         } else if(method == Method.DELETE) {
-            return new DeleteRequest<TRes>(url, resClass, headers, listener, errorListener);
+            return new DeleteRequest<TRes>(url, headers, listener, errorListener);
         } else {
             return null;
         }

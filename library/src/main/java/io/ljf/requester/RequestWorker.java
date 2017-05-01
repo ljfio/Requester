@@ -43,7 +43,7 @@ public class RequestWorker {
 
     public Map<String, String> getDefaultHeaders() {
         if (defaultHeaders == null) {
-            defaultHeaders = new HashMap<String, String>();
+            defaultHeaders = new HashMap<>();
         }
 
         return defaultHeaders;
