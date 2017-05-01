@@ -1,4 +1,4 @@
-package io.ljf.requester;
+package com.github.ljfio.requester;
 
 import android.util.Log;
 
@@ -6,7 +6,6 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
 /**

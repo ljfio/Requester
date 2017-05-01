@@ -1,11 +1,10 @@
-package io.ljf.requester;
+package com.github.ljfio.requester;
 
 /**
  * Created by luke on 27/04/2017.
  * https://developer.android.com/training/volley/request-custom.html
  */
 
-import com.android.volley.Request.Method;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 

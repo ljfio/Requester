@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
-    package="io.ljf.requester">
+    package="com.github.ljfio.requester">
 
     <application />
 

@@ -1,4 +1,4 @@
-package io.ljf.requester;
+package com.github.ljfio.requester;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -12,7 +12,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
 /**

@@ -1,4 +1,4 @@
-package io.ljf.requester;
+package com.github.ljfio.requester;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

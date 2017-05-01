@@ -1,6 +1,4 @@
-package io.ljf.requester;
-
-import com.android.volley.toolbox.JsonRequest;
+package com.github.ljfio.requester;
 
 import org.junit.Test;
 
