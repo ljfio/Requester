@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2017 Luke Fisher
+ * This file is part of Requester which is released under MIT.
+ * See file LICENSE.md or go to http://github.com/ljfio/Requester for full license details.
+ */
+
 package com.github.ljfio.requester;
 
 /**
