@@ -25,9 +25,9 @@ public class GetRequest<T> extends BaseRequest<T> {
      * @param listener Listener to receive the request
      * @param errorListener Error Listener for Volley
      */
-    public GetRequest(String url, Map<String, String> headers,
+    public GetRequest(String url, Map<String, String> headers, Class<T> responseClass,
                       Listener<T> listener, ErrorListener errorListener) {
-        super(Method.GET, url, headers, listener, errorListener);
+        super(Method.GET, url, headers, responseClass, listener, errorListener);
     }
 
     /**
@@ -40,8 +40,9 @@ public class GetRequest<T> extends BaseRequest<T> {
      * @param errorListener Error Listener for Volley
      */
     public GetRequest(String url, Map<String, String> headers, Map<String, String> params,
+                      Class<T> responseClass,
                       Listener<T> listener, ErrorListener errorListener) {
-        this(url, headers, listener, errorListener);
+        this(url, headers, responseClass, listener, errorListener);
 
         this.params = params;
     }

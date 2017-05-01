@@ -20,8 +20,8 @@ public class DeleteRequest<T> extends BaseRequest<T> {
      * @param listener Listener to receive the request
      * @param errorListener Error Listener for Volley
      */
-    public DeleteRequest(String url, Map<String, String> headers,
+    public DeleteRequest(String url, Map<String, String> headers, Class<T> responseClass,
                          Listener<T> listener, ErrorListener errorListener) {
-        super(Method.DELETE, url, headers, listener, errorListener);
+        super(Method.DELETE, url, headers, responseClass, listener, errorListener);
     }
 }

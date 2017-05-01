@@ -21,9 +21,10 @@ public class PostRequest<TRes, TReq> extends BaseWithBodyRequest<TRes, TReq> {
      * @param listener
      * @param errorListener
      */
-    public PostRequest(String url, Map<String, String> headers, TReq requestObject,
+    public PostRequest(String url, Map<String, String> headers,
+                       Class<TRes> responseClass, Class<TReq> requestClass, TReq requestObject,
                        Listener<TRes> listener, ErrorListener errorListener) {
-        super(Method.POST, url, headers, requestObject, listener, errorListener);
+        super(Method.POST, url, headers, responseClass, requestClass, requestObject, listener, errorListener);
 
     }
 }

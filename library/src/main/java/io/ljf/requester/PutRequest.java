@@ -20,9 +20,10 @@ public class PutRequest<TRes, TReq> extends BaseWithBodyRequest<TRes, TReq> {
      * @param listener
      * @param errorListener
      */
-    public PutRequest(String url, Map<String, String> headers, TReq requestObject,
+    public PutRequest(String url, Map<String, String> headers,
+                      Class<TRes> responseClass, Class<TReq> requestClass, TReq requestObject,
                       Listener<TRes> listener, ErrorListener errorListener) {
-        super(Method.PUT, url, headers, requestObject, listener, errorListener);
+        super(Method.PUT, url, headers, responseClass, requestClass, requestObject, listener, errorListener);
 
     }
 }
